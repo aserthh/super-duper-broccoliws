@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winstreak Modz — GTA V • Upagem Profissional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rgb: #ffffff;
+      --rgb-glow: rgba(255, 255, 255, 0.6);
+      --rgb-mid: rgba(255, 255, 255, 0.3);
+      --rgb-low: rgba(255, 255, 255, 0.08);
+      --rgb-faint: rgba(255, 255, 255, 0.04);
+      --bg: #000000;
+      --surface: rgba(8, 8, 8, 0.7);
+      --text: #f5f5f5;
+      --muted: #888888;
+      * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+    @keyframes slideDown {
+      0%   { transform: translateY(-100%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateX(40px) translateY(20px); }
+      to   { opacity: 1; transform: translateX(0) translateY(0); }
+    }
+    @keyframes metallicShine {
+      0%   { background-position: 0% 0%; }
+      50%  { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+    @keyframes gradientFlow {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes rotateRays {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes scrollLeft {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes scrollRight {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes glitchSlice1 {
+      0%,100% { clip-path: inset(0 0 100% 0); transform: translateX(0); }
+      20% { clip-path: inset(15% 0 70% 0); transform: translateX(-4px); }
+      40% { clip-path: inset(40% 0 45% 0); transform: translateX(4px); }
+      60% { clip-path: inset(65% 0 20% 0); transform: translateX(-2px); }
+      80% { clip-path: inset(80% 0 5% 0);  transform: translateX(3px); }
+    }
+    @keyframes glitchSlice2 {
+      0%,100% { clip-path: inset(0 0 100% 0); transform: translateX(0); }
+      20% { clip-path: inset(60% 0 30% 0); transform: translateX(5px); }
+      50% { clip-path: inset(30% 0 55% 0); transform: translateX(-5px); }
+      70% { clip-path: inset(10% 0 80% 0); transform: translateX(2px); }
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(0,0,0,0.04) 2px,
+        rgba(0,0,0,0.04) 4px
+      );
+    }
+
+    /* ===== FUNDO ===== */
+    #bgCanvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -3; pointer-events: none;
+    }
+    #bgOverlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: repeating-linear-gradient(45deg, rgba(0,0,0,0.5) 0px, rgba(0,0,0,0.5) 2px, transparent 2px, transparent 8px);
+      pointer-events: none; z-index: -2; opacity: 0.3;
+    }
+    #lightRays {
+      position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(255,255,255,0.04) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(200,200,200,0.03) 0%, transparent 45%),
+        radial-gradient(circle at 20% 80%, rgba(150,150,150,0.02) 0%, transparent 50%);
+      animation: rotateRays 80s linear infinite;
+      z-index: -1; pointer-events: none;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 80px;
+      background: rgba(4,4,4,0.90);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 10px 40px -10px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.05) inset;
+      animation: slideDown 0.7s cubic-bezier(0.16,1,0.3,1);
+      will-change: transform;
+    }
+
+    .logo { display: flex; align-items: center; gap: 20px; text-decoration: none; }
+    .logo-text {
+      font-family: 'Bebas Neue', cursive; font-size: 36px; letter-spacing: 4px;
+      background: linear-gradient(135deg, #ffffff, #aaaaaa, #ffffff);
+      background-size: 200% 200%; -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: metallicShine 4s ease infinite;
+      filter: drop-shadow(0 2px 4px #00000080);
+    }
+    .logo-pill {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 40px; padding: 6px 18px;
+      font-family: 'DM Mono', monospace; font-size: 12px; color: #ffffff;
+      text-transform: uppercase; letter-spacing: 2px;
+      box-shadow: 0 0 12px rgba(255,255,255,0.1);
+    }
+    .pill-dot {
+      width: 10px; height: 10px; background: #ffffff; border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255,255,255,0.8);
+      animation: pulse 2s infinite;
+    }
+
+    nav { display: flex; gap: 8px; align-items: center; }
+    nav a {
+      font-family: 'DM Mono', monospace; font-size: 14px;
+      text-decoration: none; padding: 10px 20px;
+      color: var(--muted); border: 1px solid transparent;
+      border-radius: 30px; transition: all 0.3s ease;
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+    nav a:hover {
+      color: #fff; border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06);
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+    nav a.nav-hi {
+      color: #ffffff; border-color: #ffffff; background: rgba(255,255,255,0.07);
+      box-shadow: 0 0 18px rgba(255,255,255,0.15);
+    }
+    nav a.nav-hi:hover {
+      background: #ffffff; color: #000; box-shadow: 0 0 35px rgba(255,255,255,0.5);
+    }
+
+    /* ===== BOTÃO AVALIAÇÕES ===== */
+    nav a.nav-reviews {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #000;
+      border: none;
+      background: linear-gradient(135deg, #ffffff, #cccccc, #aaaaaa);
+      box-shadow: 0 0 18px rgba(255,255,255,0.3), 0 4px 16px rgba(0,0,0,0.5);
+      padding: 11px 22px;
+      border-radius: 30px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    nav a.nav-reviews::before {
+      content: '';
+      position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+      transition: left 0.5s;
+    }
+    nav a.nav-reviews:hover::before { left: 100%; }
+    nav a.nav-reviews:hover {
+      background: linear-gradient(135deg, #ffffff, #dddddd);
+      color: #000;
+      box-shadow: 0 0 35px rgba(255,255,255,0.5), 0 6px 24px rgba(0,0,0,0.6);
+      transform: scale(1.07) translateY(-1px);
+    }
+
+    /* ===== MAIN ===== */
+    main { padding-top: 100px; max-width: 1300px; margin: 0 auto; position: relative; z-index: 5; }
+
+    /* ===== HERO ===== */
+    .hero {
+      display: grid; grid-template-columns: 1fr 420px;
+      gap: 50px; align-items: center;
+      min-height: calc(100vh - 100px); padding: 40px 30px;
+    }
+    .hero-left { position: relative; }
+    .h-tag {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50px; padding: 10px 25px; margin-bottom: 40px;
+      font-family: 'DM Mono', monospace; font-size: 13px; color: #ffffff;
+      text-transform: uppercase; letter-spacing: 2px;
+      backdrop-filter: blur(8px); box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    }
+    .h-tag span:first-child {
+      width: 10px; height: 10px; background: #ffffff; border-radius: 50%;
+      box-shadow: 0 0 15px rgba(255,255,255,0.8); animation: blink 2s infinite;
+    }
+    .hero-h1 {
+      font-family: 'Bebas Neue', cursive; font-size: clamp(70px,12vw,140px);
+      line-height: 0.8; text-transform: uppercase; margin-bottom: 25px;
+      position: relative;
+    }
+    .hero-h1::before,
+    .hero-h1::after {
+      content: attr(data-text);
+      position: absolute; top: 0; left: 0; right: 0;
+      background: linear-gradient(135deg, #ffffff, #aaaaaa, #ffffff);
+      background-size: 300% 300%; -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0;
+      font-size: clamp(70px,12vw,140px);
+      font-family: 'Bebas Neue', cursive;
+      line-height: 0.8;
+    }
+    .glitching::before { animation: glitchSlice1 0.55s steps(1) forwards; opacity: 1; filter: drop-shadow(2px 0 #ffffff); }
+    .glitching::after  { animation: glitchSlice2 0.55s steps(1) forwards; opacity: 1; filter: drop-shadow(-2px 0 rgba(255,255,255,0.5)); }
+    .hero-h1 .t1 {
+      display: block;
+      background: linear-gradient(135deg, #ffffff, #aaaaaa, #ffffff);
+      background-size: 300% 300%; -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientFlow 4s ease infinite;
+      filter: drop-shadow(0 10px 15px #00000060) drop-shadow(0 0 20px rgba(255,255,255,0.3));
+      letter-spacing: 2px;
+    }
+    .hero-h1 .t2 {
+      display: block; font-size: 0.45em; color: transparent;
+      background: linear-gradient(135deg, #777777, #444444);
+      -webkit-background-clip: text; letter-spacing: 18px;
+    }
+    .hero-desc {
+      font-size: 16px; color: var(--muted); max-width: 500px;
+      margin-bottom: 45px; line-height: 1.9; font-family: 'DM Mono', monospace;
+    }
+    .hero-desc b { color: #ffffff; }
+    .hero-btns { display: flex; gap: 25px; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: 'Bebas Neue', cursive; font-size: 20px; letter-spacing: 3px;
+      padding: 16px 42px; background: linear-gradient(145deg,#1a1a1a,#0a0a0a);
+      border: 2px solid #ffffff; color: #ffffff; text-transform: uppercase;
+      cursor: pointer; border-radius: 60px; position: relative; overflow: hidden;
+      transition: all 0.3s; box-shadow: 0 5px 15px #000000a0, 0 0 25px rgba(255,255,255,0.1);
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s;
+    }
+    .btn-primary:hover::before { left: 100%; }
+    .btn-primary:hover { background: #ffffff; color: #000; transform: scale(1.05); box-shadow: 0 10px 30px #000000c0, 0 0 50px rgba(255,255,255,0.4); }
+    .btn-secondary {
+      font-family: 'Bebas Neue', cursive; font-size: 20px; letter-spacing: 3px;
+      padding: 16px 42px; background: transparent; border: 2px solid #444;
+      color: var(--muted); text-transform: uppercase; cursor: pointer;
+      border-radius: 60px; transition: all 0.3s; backdrop-filter: blur(5px);
+    }
+    .btn-secondary:hover {
+      border-color: #ffffff; color: #ffffff; background: rgba(255,255,255,0.07);
+      transform: scale(1.05); box-shadow: 0 0 30px rgba(255,255,255,0.2);
+    }
+
+    /* ===== PAINEL LATERAL ===== */
+    .hero-right { animation: floatIn 1s ease-out; }
+    .panel {
+      background: rgba(8,8,8,0.92);
+      border: 1px solid rgba(255,255,255,0.18); border-radius: 28px; overflow: hidden;
+      box-shadow: 0 30px 60px #000000c0, 0 0 0 1px rgba(255,255,255,0.06) inset, 0 0 30px rgba(255,255,255,0.05);
+      transition: box-shadow 0.3s;
+    }
+    .panel:hover { box-shadow: 0 40px 80px #000000e0, 0 0 0 2px rgba(255,255,255,0.15) inset, 0 0 50px rgba(255,255,255,0.1); }
+    .panel-head {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 28px; background: rgba(255,255,255,0.05);
+      border-bottom: 2px solid rgba(255,255,255,0.12);
+    }
+    .panel-label { font-family: 'DM Mono', monospace; font-size: 13px; color: #ffffff; text-transform: uppercase; letter-spacing: 3px; font-weight: 500; text-shadow: 0 0 10px rgba(255,255,255,0.4); }
+    .panel-live { display: flex; align-items: center; gap: 8px; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 13px; text-transform: uppercase; }
+    .prow {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 28px; border-bottom: 1px solid rgba(255,255,255,0.06);
+      text-decoration: none; color: inherit; transition: all 0.25s; cursor: pointer;
+    }
+    .prow:last-of-type { border-bottom: none; }
+    .prow:hover { background: rgba(255,255,255,0.05); padding-left: 35px; box-shadow: 0 0 20px rgba(255,255,255,0.05) inset; }
+    .prow.hi { background: rgba(255,255,255,0.09); border-left: 5px solid #ffffff; box-shadow: 0 0 25px rgba(255,255,255,0.08); }
+    .prow-name { font-family: 'Bebas Neue', cursive; font-size: 24px; letter-spacing: 1.5px; color: #e0e0e0; }
+    .prow.hi .prow-name { color: #ffffff; text-shadow: 0 0 15px rgba(255,255,255,0.5); }
+    .prow-right { display: flex; align-items: center; gap: 18px; }
+    .ptag { font-family: 'DM Mono', monospace; font-size: 11px; padding: 5px 12px; border-radius: 30px; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; }
+    .ptag-hot { background: rgba(255,255,255,0.1); border: 1px solid #ffffff; color: #ffffff; box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+    .ptag-gold { background: rgba(200,200,200,0.08); border: 1px solid #999999; color: #bbbbbb; }
+    .ptag-dim { background: rgba(140,140,140,0.07); border: 1px solid #444; color: var(--muted); }
+    .prow-price { font-family: 'Bebas Neue', cursive; font-size: 26px; color: #dddddd; text-shadow: 0 0 15px rgba(255,255,255,0.3); min-width: 80px; text-align: right; }
+    .prow-price small { font-size: 15px; opacity: 0.7; margin-right: 2px; }
+    .panel-foot { padding: 18px 28px; border-top: 2px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4); display: flex; align-items: center; gap: 15px; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); text-transform: uppercase; }
+
+    /* ===== SEÇÃO PLANOS ===== */
+    .plans-sec { padding: 80px 30px 140px; text-align: center; }
+    .sec-eye { font-family: 'DM Mono', monospace; font-size: 15px; color: #ffffff; text-transform: uppercase; letter-spacing: 6px; margin-bottom: 15px; text-shadow: 0 0 15px rgba(255,255,255,0.4); }
+    .sec-title { font-family: 'Bebas Neue', cursive; font-size: clamp(48px,7vw,80px); text-transform: uppercase; color: #f0f0f0; text-shadow: 3px 3px 0 #111111, 0 0 30px rgba(255,255,255,0.2); margin-bottom: 15px; letter-spacing: 2px; }
+    .sec-sub { font-family: 'DM Mono', monospace; font-size: 15px; color: #555; margin-bottom: 60px; }
+    .plans { display: flex; flex-direction: column; gap: 20px; max-width: 750px; margin: 0 auto; }
+    .plan {
+      background: rgba(8,8,8,0.92);
+      border: 2px solid rgba(255,255,255,0.15); border-radius: 30px; overflow: hidden;
+      cursor: pointer; transition: all 0.35s; position: relative;
+      box-shadow: 0 20px 40px #000000c0, 0 0 0 1px rgba(255,255,255,0.04) inset;
+    }
+    .plan:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(255,255,255,0.5); box-shadow: 0 30px 60px #000000e0, 0 0 35px rgba(255,255,255,0.15); }
+    .plan.open { border-color: #ffffff; box-shadow: 0 20px 50px #000000, 0 0 60px rgba(255,255,255,0.2); }
+    .plan.star { border-color: #aaaaaa; background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(8,8,8,0.85)); }
+    .plan.star::after {
+      content: '🔥 MAIS VENDIDO'; position: absolute; top: 18px; right: -35px;
+      background: #333333; color: #fff; font-family: 'Bebas Neue', cursive;
+      font-size: 14px; padding: 6px 50px; transform: rotate(35deg);
+      box-shadow: 0 5px 15px #000000a0; z-index: 10; letter-spacing: 2px; font-weight: bold;
+    }
+    .plan-head { display: flex; justify-content: space-between; align-items: center; padding: 22px 28px; background: rgba(255,255,255,0.05); border-bottom: 2px solid rgba(255,255,255,0.12); }
+    .plan-name { font-family: 'Bebas Neue', cursive; font-size: 30px; color: #f0f0f0; }
+    .plan-right { display: flex; align-items: center; gap: 18px; }
+    .badge { font-family: 'DM Mono', monospace; font-size: 13px; padding: 6px 14px; border-radius: 30px; text-transform: uppercase; }
+    .b-hot { background: rgba(255,255,255,0.1); border: 1px solid #ffffff; color: #ffffff; }
+    .b-gold { background: rgba(200,200,200,0.08); border: 1px solid #999; color: #bbbbbb; }
+    .b-dim { background: rgba(140,140,140,0.07); border: 1px solid #444; color: var(--muted); }
+    .arrow {
+      width: 36px; height: 36px; border: 2px solid #ffffff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: #ffffff; transition: all 0.4s; background: rgba(0,0,0,0.3);
+    }
+    .plan.open .arrow { transform: rotate(180deg); border-color: #aaaaaa; color: #aaaaaa; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+    .plan-sep { height: 2px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); margin: 0 28px; }
+    .plan.open .plan-sep { opacity: 0; }
+    .plan-body { max-height: 0; overflow: hidden; opacity: 0; padding: 0 28px; transition: all 0.5s cubic-bezier(0.4,0,0.2,1); }
+    .plan.open .plan-body { max-height: 600px; opacity: 1; padding: 20px 28px 28px; }
+    .feat { display: flex; align-items: flex-start; gap: 15px; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 15px; padding: 8px 0; }
+    .feat::before { content: '⏺'; color: #ffffff; font-size: 12px; filter: drop-shadow(0 0 8px rgba(255,255,255,0.5)); margin-top: 4px; }
+    .plan-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; padding-top: 25px; border-top: 2px solid rgba(255,255,255,0.15); }
+    .price { font-family: 'Bebas Neue', cursive; font-size: 48px; color: #dddddd; text-shadow: 0 0 25px rgba(255,255,255,0.3); line-height: 1; }
+    .price small { font-size: 20px; opacity: 0.7; margin-right: 3px; }
+    .buy-btn { font-family: 'Bebas Neue', cursive; font-size: 20px; padding: 12px 32px; background: transparent; border: 2px solid #aaaaaa; color: #aaaaaa; text-decoration: none; border-radius: 60px; transition: all 0.3s; text-transform: uppercase; letter-spacing: 2px; }
+    .buy-btn:hover { background: #ffffff; color: #000; box-shadow: 0 0 35px rgba(255,255,255,0.4); transform: scale(1.07); border-color: #ffffff; }
+
+    /* ===== FAB ===== */
+    #fab {
+      position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg,#1a1a1a,#0a0a0a); border: 2px solid #ffffff;
+      color: #ffffff; font-family: 'Bebas Neue', cursive; font-size: 22px;
+      letter-spacing: 4px; padding: 18px 58px; border-radius: 70px; cursor: pointer;
+      z-index: 90; box-shadow: 0 15px 40px #000000d0, 0 0 40px rgba(255,255,255,0.2);
+      transition: all 0.3s; text-transform: uppercase; backdrop-filter: blur(10px);
+    }
+    #fab:hover { transform: translateX(-50%) translateY(-5px); background: #ffffff; color: #000; box-shadow: 0 20px 50px #000000, 0 0 80px rgba(255,255,255,0.5); }
+
+    /* ===== MODAIS BASE ===== */
+    .modal {
+      position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(25px) saturate(200%);
+      -webkit-backdrop-filter: blur(25px) saturate(200%);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.4s; padding: 20px;
+    }
+    .modal.open { opacity: 1; pointer-events: auto; }
+    .modal.open .mbox { transform: scale(1) translateY(0); opacity: 1; }
+    .mbox {
+      background: rgba(5,5,5,0.97);
+      border: 2px solid #ffffff; border-radius: 30px;
+      max-width: 600px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 40px;
+      box-shadow: 0 40px 80px #000000, 0 0 60px rgba(255,255,255,0.2);
+      transform: scale(0.9) translateY(30px); opacity: 0;
+      transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
+      color: #e0e0e0;
+    }
+    .mbox h2 { font-family: 'Bebas Neue', cursive; font-size: 40px; margin-bottom: 25px; color: #f0f0f0; }
+    .mbox h2 em { color: #ffffff; font-style: normal; text-shadow: 0 0 15px rgba(255,255,255,0.5); }
+    .mbox p { font-family: 'DM Mono', monospace; font-size: 15px; line-height: 1.9; margin-bottom: 20px; color: #888; }
+    .mbox b { color: #ffffff; }
+    .mnote { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 25px; margin: 25px 0; }
+    .mnote b { color: #ffffff; font-size: 18px; display: block; margin-bottom: 12px; }
+    .crows { display: flex; flex-direction: column; gap: 15px; margin: 25px 0; }
+    .crow { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.15); border-radius: 18px; padding: 18px 25px; transition: all 0.2s; }
+    .crow:hover { border-color: #ffffff; background: rgba(255,255,255,0.05); box-shadow: 0 0 25px rgba(255,255,255,0.1); }
+    .crow-lbl { font-family: 'DM Mono', monospace; font-size: 13px; color: #555; text-transform: uppercase; letter-spacing: 2px; }
+    .crow-val { font-family: 'Bebas Neue', cursive; font-size: 22px; color: #f0f0f0; }
+    .crow-val-mono {
+      font-family: 'DM Mono', monospace;
+      font-size: 16px;
+      color: #f0f0f0;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .c-green { color: #cccccc; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+    .c-purple { color: #ffffff; }
+    .mclose {
+      width: 100%; padding: 16px; background: transparent; border: 2px solid #ffffff;
+      color: #ffffff; font-family: 'Bebas Neue', cursive; font-size: 20px;
+      letter-spacing: 3px; border-radius: 60px; cursor: pointer; transition: all 0.3s;
+      margin-top: 25px; text-transform: uppercase;
+    }
+    .mclose:hover { background: #ffffff; color: #000; box-shadow: 0 0 40px rgba(255,255,255,0.4); }
+
+    /* ===== MODAL AVALIAÇÕES ===== */
+    @keyframes revModalIn {
+      0%   { opacity: 0; transform: translateY(60px) scale(0.94); filter: blur(8px); }
+      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+    @keyframes revGlow {
+      0%, 100% { box-shadow: 0 0 40px rgba(255,255,255,0.1), 0 60px 120px rgba(0,0,0,0.95); }
+      50%       { box-shadow: 0 0 70px rgba(255,255,255,0.2), 0 60px 120px rgba(0,0,0,0.95); }
+    }
+    @keyframes headerShine {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    #reviewsModal .mbox-reviews {
+      background: #040404;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-top: 3px solid #ffffff;
+      border-radius: 20px;
+      width: 100%; max-width: 1050px; max-height: 88vh;
+      padding: 0; overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.05) inset, 0 60px 120px rgba(0,0,0,0.95), 0 0 60px rgba(255,255,255,0.08);
+      transform: translateY(60px) scale(0.94); opacity: 0; filter: blur(8px);
+      transition: none;
+      position: relative;
+    }
+    #reviewsModal.open .mbox-reviews {
+      animation: revModalIn 0.5s cubic-bezier(0.22,1,0.36,1) forwards, revGlow 4s ease-in-out 0.5s infinite;
+    }
+
+    #reviewsModal .mbox-reviews::after {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none; z-index: 100;
+      background: repeating-linear-gradient(0deg, transparent 0px, transparent 3px, rgba(255,255,255,0.008) 3px, rgba(255,255,255,0.008) 4px);
+      border-radius: 20px;
+    }
+
+    .rev-head {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 40px;
+      height: 90px;
+      background: linear-gradient(135deg, rgba(80,80,80,0.2) 0%, rgba(30,30,30,0.4) 50%, rgba(0,0,0,0.5) 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      position: relative; overflow: hidden;
+    }
+    .rev-head::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%);
+      background-size: 200% 100%;
+      animation: headerShine 4s linear infinite;
+    }
+    .rev-head-left { display: flex; align-items: center; gap: 18px; position: relative; z-index: 1; }
+    .rev-head-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, #555555, #222222);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.15), 0 4px 15px rgba(0,0,0,0.6);
+      flex-shrink: 0;
+    }
+    .rev-head-text h2 {
+      font-family: 'Bebas Neue', cursive; font-size: 28px; color: #fff;
+      letter-spacing: 4px; margin: 0; line-height: 1;
+      text-shadow: 0 0 25px rgba(255,255,255,0.3);
+    }
+    .rev-head-text span {
+      font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(200,200,200,0.5);
+      text-transform: uppercase; letter-spacing: 3px;
+    }
+    .rev-counter {
+      display: flex; align-items: center; gap: 14px;
+      position: relative; z-index: 1;
+    }
+    .rev-stat {
+      text-align: center;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 10px 20px;
+    }
+    .rev-stat-num {
+      font-family: 'Bebas Neue', cursive; font-size: 38px; line-height: 1;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(255,255,255,0.4);
+    }
+    .rev-stat-lbl {
+      font-family: 'DM Mono', monospace; font-size: 9px; color: #555;
+      text-transform: uppercase; letter-spacing: 2px; margin-top: 2px;
+    }
+    .rev-stars-total {
+      font-size: 20px; color: #aaaaaa; letter-spacing: 3px;
+      text-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+
+    .rev-carousel-wrap {
+      overflow: hidden; padding: 16px 0; position: relative;
+    }
+    .rev-carousel-wrap::before,
+    .rev-carousel-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 10; pointer-events: none;
+    }
+    .rev-carousel-wrap::before { left: 0;  background: linear-gradient(to right, #040404 0%, transparent 100%); }
+    .rev-carousel-wrap::after  { right: 0; background: linear-gradient(to left,  #040404 0%, transparent 100%); }
+
+    .rev-track { display: flex; gap: 12px; width: max-content; will-change: transform; }
+    .rev-track.row1 { animation: scrollLeft  50s linear infinite; transform: translateZ(0); }
+    .rev-track.row2 { animation: scrollRight 62s linear infinite; transform: translateZ(0); }
+
+    .rev-card {
+      flex-shrink: 0; width: 285px;
+      background: linear-gradient(145deg, rgba(20,20,20,0.9), rgba(8,8,8,0.95));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px; padding: 18px 20px;
+      display: flex; flex-direction: column; gap: 12px;
+      position: relative; overflow: hidden;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .rev-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    }
+    .rev-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+      background: linear-gradient(180deg, #ffffff, transparent);
+      opacity: 0; transition: opacity 0.25s;
+    }
+    .rev-card:hover { border-color: rgba(255,255,255,0.3); box-shadow: 0 8px 30px rgba(0,0,0,0.7), 0 0 20px rgba(255,255,255,0.05); }
+    .rev-card:hover::after { opacity: 1; }
+
+    .rev-card-badge {
+      position: absolute; top: 12px; right: 14px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px; padding: 2px 8px;
+      font-family: 'DM Mono', monospace; font-size: 8px;
+      color: rgba(200,200,200,0.7); letter-spacing: 1px; text-transform: uppercase;
+    }
+
+    .rev-card-top { display: flex; align-items: center; gap: 12px; }
+    .rev-avatar {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.2);
+      object-fit: cover;
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 0 12px rgba(255,255,255,0.05);
+    }
+    .rev-user { flex: 1; min-width: 0; }
+    .rev-name {
+      font-family: 'Bebas Neue', cursive; font-size: 17px; color: #f5f5f5;
+      letter-spacing: 1.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .rev-stars { color: #888888; font-size: 11px; letter-spacing: 3px; margin-top: 2px; }
+
+    .rev-divider {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.15), rgba(255,255,255,0.04), transparent);
+    }
+
+    .rev-msg {
+      font-family: 'DM Mono', monospace; font-size: 12px; color: #777;
+      line-height: 1.8; flex: 1;
+      display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .rev-proof {
+      width: 100%; border-radius: 10px; object-fit: cover; max-height: 110px;
+      border: 1px solid rgba(255,255,255,0.1); opacity: 0.65;
+      transition: opacity 0.2s;
+    }
+    .rev-proof:hover { opacity: 1; }
+
+    .rev-foot { display: flex; align-items: center; }
+    .rev-plan-tag {
+      font-family: 'DM Mono', monospace; font-size: 9px; padding: 3px 10px;
+      border-radius: 20px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2);
+      color: #aaaaaa; text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    .rev-close-btn {
+      display: block; width: calc(100% - 80px); margin: 6px auto 24px;
+      padding: 13px; cursor: pointer; transition: all 0.3s;
+      text-transform: uppercase; letter-spacing: 4px;
+      font-family: 'Bebas Neue', cursive; font-size: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(220,220,220,0.9);
+      border-radius: 60px;
+      position: relative; overflow: hidden;
+    }
+    .rev-close-btn::before {
+      content: '';
+      position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
+    }
+    .rev-close-btn:hover::before { left: 100%; }
+    .rev-close-btn:hover {
+      background: #ffffff;
+      color: #000;
+      border-color: #ffffff;
+      box-shadow: 0 0 40px rgba(255,255,255,0.3), 0 6px 20px rgba(0,0,0,0.5);
+    }
+
+    /* ===== FOOTER ===== */
+    footer { text-align: center; padding: 40px 30px; font-family: 'DM Mono', monospace; font-size: 13px; color: #333; text-transform: uppercase; letter-spacing: 3px; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #050505; }
+    ::-webkit-scrollbar-thumb { background: #555555; border-radius: 10px; box-shadow: 0 0 10px rgba(255,255,255,0.1); }
+    ::-webkit-scrollbar-thumb:hover { background: #aaaaaa; }
+
+    /* ===== RESPONSIVO MOBILE ===== */
+    @media (max-width: 900px) {
+      header { padding: 0 18px; height: 64px; }
+      .logo-text { font-size: 24px; letter-spacing: 2px; }
+      .logo-pill { display: none; }
+      nav { gap: 4px; }
+      nav a { font-size: 11px; padding: 7px 10px; letter-spacing: 0.5px; }
+      main { padding-top: 84px; }
+      .hero { grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px 16px; min-height: auto; align-items: start; }
+      .hero-h1 { font-size: clamp(38px, 9vw, 70px); margin-bottom: 14px; }
+      .h-tag { font-size: 10px; padding: 7px 14px; margin-bottom: 20px; }
+      .hero-desc { font-size: 12px; margin-bottom: 24px; }
+      .btn-primary, .btn-secondary { font-size: 15px; padding: 12px 22px; }
+      .hero-right { display: block; }
+      .prow-name { font-size: 18px; }
+      .prow { padding: 14px 16px; }
+      .prow-price { font-size: 20px; min-width: 60px; }
+      .ptag { font-size: 9px; padding: 4px 8px; }
+      .panel-head { padding: 14px 16px; }
+      .panel-label { font-size: 10px; letter-spacing: 1px; }
+      .panel-foot { padding: 12px 16px; font-size: 10px; }
+      .plans-sec { padding: 50px 16px 100px; }
+      #fab { font-size: 16px; padding: 14px 32px; letter-spacing: 2px; }
+    }
+
+    @media (max-width: 540px) {
+      header { height: 56px; padding: 0 12px; }
+      .logo-text { font-size: 19px; }
+      nav a { font-size: 9px; padding: 6px 7px; }
+      nav a.nav-reviews { font-size: 10px; padding: 7px 10px; }
+      main { padding-top: 76px; }
+      .hero { grid-template-columns: 1fr; padding: 20px 14px; }
+      .hero-right { order: -1; }
+      .hero-h1 { font-size: clamp(52px, 14vw, 80px); }
+      .h-tag { font-size: 10px; }
+      .hero-desc { font-size: 13px; }
+      .hero-btns { gap: 12px; }
+      .btn-primary, .btn-secondary { font-size: 16px; padding: 13px 26px; }
+      .prow { padding: 14px 18px; }
+      .prow-name { font-size: 20px; }
+      .prow-price { font-size: 22px; }
+      #fab { font-size: 15px; padding: 13px 28px; bottom: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bgCanvas"></canvas>
+  <div id="bgOverlay"></div>
+  <div id="lightRays"></div>
+
+  <header>
+    <a class="logo" href="#">
+      <span class="logo-text">WINSTREAK MODZ</span>
+      <span class="logo-pill"><span class="pill-dot"></span>online</span>
+    </a>
+    <nav>
+      <a href="#planos">Planos</a>
+      <a href="javascript:void(0)" id="openTerms">Termos</a>
+      <a href="javascript:void(0)" id="openReviews" class="nav-reviews">Avaliações</a>
+      <a href="javascript:void(0)" id="openContact" class="nav-hi">Contato</a>
+      <a href="https://www.youtube.com/@WSModdz" target="_blank">Canal</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-left">
+        <div class="h-tag">
+          <span></span> Somente PC · GTA Enhanced &amp; Legacy
+        </div>
+        <h1 class="hero-h1" id="heroH1" data-text="Winstreak">
+          <span class="t1">Winstreak</span>
+          <span class="t2">Modz</span>
+        </h1>
+        <p class="hero-desc">
+          Sua conta do jeito que você sempre quis.<br>
+          <b>Dinheiro, level, veículos e unlocks</b> — configurados pra você, do jeito que você pedir.
+        </p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="document.getElementById('planos').scrollIntoView({behavior:'smooth'})">Ver Planos →</button>
+          <button class="btn-secondary" onclick="openC()">Falar Agora</button>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="panel">
+          <div class="panel-head">
+            <span class="panel-label">// planos disponíveis</span>
+            <div class="panel-live"><span class="pill-dot"></span> ao vivo</div>
+          </div>
+          <a href="javascript:void(0)" class="prow" onclick="jumpTo('starter')">
+            <span class="prow-name">Starter</span>
+            <div class="prow-right"><span class="ptag ptag-dim">Iniciante</span><span class="prow-price"><small>R$</small>20</span></div>
+          </a>
+          <a href="javascript:void(0)" class="prow hi" onclick="jumpTo('basic')">
+            <span class="prow-name">Basic</span>
+            <div class="prow-right"><span class="ptag ptag-hot">🔥 Mais Vendido</span><span class="prow-price"><small>R$</small>30</span></div>
+          </a>
+          <a href="javascript:void(0)" class="prow" onclick="jumpTo('standard')">
+            <span class="prow-name">Standard</span>
+            <div class="prow-right"><span class="ptag ptag-gold">Destaque</span><span class="prow-price"><small>R$</small>40</span></div>
+          </a>
+          <a href="javascript:void(0)" class="prow" onclick="jumpTo('premium')">
+            <span class="prow-name">Premium</span>
+            <div class="prow-right"><span class="ptag ptag-gold">Top</span><span class="prow-price"><small>R$</small>50</span></div>
+          </a>
+          <a href="javascript:void(0)" class="prow" onclick="jumpTo('custom')">
+            <span class="prow-name">Custom</span>
+            <div class="prow-right"><span class="ptag ptag-dim">Personalizado</span><span class="prow-price" style="font-size:18px;color:#555">consulta</span></div>
+          </a>
+          <div class="panel-foot"><span class="pill-dot"></span><span>Clique num plano para ver os detalhes</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="plans-sec" id="planos">
+      <div class="sec-eye">// nossos planos</div>
+      <div class="sec-title">Escolha o seu plano</div>
+      <div class="sec-sub">clique para expandir</div>
+      <div class="plans">
+        <div class="plan" data-id="starter">
+          <div class="plan-head"><span class="plan-name">Starter</span><div class="plan-right"><span class="badge b-dim">Iniciante</span><div class="arrow">▼</div></div></div>
+          <div class="plan-sep"></div>
+          <div class="plan-body">
+            <div class="feat">Corridinha &amp; Carregamento MOD</div>
+            <div class="feat">Unlocks essenciais</div>
+            <div class="feat">1x Kosatka</div>
+            <div class="feat">1x Fliperama</div>
+            <div class="feat">1 Apartamento aleatório</div>
+            <div class="feat">1 Hangar aleatório</div>
+            <div class="feat">5 veículos à sua escolha</div>
+            <div class="feat">$ 23 milhões em conta</div>
+            <div class="feat">Level 120</div>
+            <div class="plan-foot"><div class="price"><small>R$</small>20</div><a href="javascript:void(0)" class="buy-btn" onclick="openC()">Adquirir</a></div>
+          </div>
+        </div>
+        <div class="plan star" data-id="basic">
+          <div class="plan-head"><span class="plan-name">Basic</span><div class="plan-right"><span class="badge b-hot">🔥 Mais Vendido</span><div class="arrow">▼</div></div></div>
+          <div class="plan-sep"></div>
+          <div class="plan-body">
+            <div class="feat">Unlock-All</div>
+            <div class="feat">Trajes modded</div>
+            <div class="feat">Corridinha &amp; Carregamento MOD</div>
+            <div class="feat">1x Kosatka</div>
+            <div class="feat">1x Fliperama</div>
+            <div class="feat">1 Apartamento aleatório</div>
+            <div class="feat">1 Hangar aleatório</div>
+            <div class="feat">10 veículos à sua escolha</div>
+            <div class="feat">$ 50 milhões em conta</div>
+            <div class="feat">Level 150</div>
+            <div class="plan-foot"><div class="price"><small>R$</small>30</div><a href="javascript:void(0)" class="buy-btn" onclick="openC()">Adquirir</a></div>
+          </div>
+        </div>
+        <div class="plan" data-id="standard">
+          <div class="plan-head"><span class="plan-name">Standard</span><div class="plan-right"><span class="badge b-gold">Destaque</span><div class="arrow">▼</div></div></div>
+          <div class="plan-sep"></div>
+          <div class="plan-body">
+            <div class="feat">Unlock-All</div>
+            <div class="feat">Trajes modded</div>
+            <div class="feat">Corridinha &amp; Carregamento MOD</div>
+            <div class="feat">1x Kosatka</div>
+            <div class="feat">1x Fliperama</div>
+            <div class="feat">1 Apartamento aleatório</div>
+            <div class="feat">1 Hangar aleatório</div>
+            <div class="feat">15 veículos à sua escolha</div>
+            <div class="feat">Status modificados (KD, Data de criação, Tempo jogado...)</div>
+            <div class="feat">$ 70 milhões em conta</div>
+            <div class="feat">Level 240</div>
+            <div class="plan-foot"><div class="price"><small>R$</small>40</div><a href="javascript:void(0)" class="buy-btn" onclick="openC()">Adquirir</a></div>
+          </div>
+        </div>
+        <div class="plan" data-id="premium">
+          <div class="plan-head"><span class="plan-name">Premium</span><div class="plan-right"><span class="badge b-gold">Top</span><div class="arrow">▼</div></div></div>
+          <div class="plan-sep"></div>
+          <div class="plan-body">
+            <div class="feat">Unlock-All</div>
+            <div class="feat">Trajes modded</div>
+            <div class="feat">Corridinha &amp; Carregamento MOD</div>
+            <div class="feat">1x Kosatka</div>
+            <div class="feat">1x Fliperama</div>
+            <div class="feat">1 Apartamento aleatório</div>
+            <div class="feat">1 Hangar aleatório</div>
+            <div class="feat">20 veículos à sua escolha</div>
+            <div class="feat">Status modificados (KD, Data de criação, Tempo jogado...)</div>
+            <div class="feat">$ 90 milhões em conta</div>
+            <div class="feat">Level 480</div>
+            <div class="plan-foot"><div class="price"><small>R$</small>50</div><a href="javascript:void(0)" class="buy-btn" onclick="openC()">Adquirir</a></div>
+          </div>
+        </div>
+        <div class="plan" data-id="custom">
+          <div class="plan-head"><span class="plan-name">Custom</span><div class="plan-right"><span class="badge b-gold">Personalizado</span><div class="arrow">▼</div></div></div>
+          <div class="plan-sep"></div>
+          <div class="plan-body">
+            <div class="feat">Tudo montado do zero conforme a sua necessidade e negociado diretamente.</div>
+            <div class="plan-foot"><div class="price" style="font-size:22px;color:#444;text-shadow:none;animation:none">sob consulta</div><a href="javascript:void(0)" class="buy-btn" onclick="openC()">Negociar</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button id="fab" onclick="openC()">💬 Fale Conosco</button>
+
+  <!-- MODAL TERMOS -->
+  <div id="termsModal" class="modal">
+    <div class="mbox">
+      <h2><em>Termos</em> de Uso</h2>
+      <p>Ao realizar a upagem de sua conta conosco, recomendamos que siga o guia abaixo para manter sua conta protegida contra possíveis ações da Rockstar Games:</p>
+      <p>Para contas com até <b>R$ 80 milhões</b>, gaste no máximo <b>10 milhões por dia</b> durante os primeiros 3 dias. Após isso, pode usar com mais liberdade, sem exageros.</p>
+      <p>Para contas <b>acima de R$ 80 milhões</b>, limite-se a <b>10M por dia nos primeiros 7 dias</b>, depois <b>20M por dia</b> até zerar o saldo.</p>
+      <div class="mnote">
+        <b>⚠ Atenção</b>
+        <p>Ignorar este guia é considerado mau uso. Não nos responsabilizamos por banimentos decorrentes de abuso. Banimentos por mau uso não refletem a qualidade do nosso serviço.</p>
+      </div>
+      <p>Caso você siga todas as recomendações e ainda sofra alguma penalidade, <b>refazemos a upagem em outra conta gratuitamente</b>.</p>
+      <button class="mclose" onclick="closeM()">Fechar Termos</button>
+    </div>
+  </div>
+
+  <!-- MODAL CONTATO -->
+  <div id="contactModal" class="modal">
+    <div class="mbox">
+      <h2>Nossos <em>Contatos</em></h2>
+      <p>Fale diretamente com a gente para adquirir um plano ou tirar qualquer dúvida.</p>
+      <div class="crows">
+        <div class="crow"><span class="crow-lbl">WhatsApp</span><span class="crow-val c-green">+55 15 99128-5655</span></div>
+        <div class="crow"><span class="crow-lbl">Discord</span><span class="crow-val-mono c-purple">maribando1</span></div>
+        <div class="crow">
+          <span class="crow-lbl">Grupo do Discord</span>
+          <a href="https://discord.gg/xkH7gMkA7N" target="_blank" class="buy-btn" style="font-size:16px;padding:10px 24px;">Clique Aqui</a>
+        </div>
+      </div>
+      <button class="mclose" onclick="closeM()">Fechar</button>
+    </div>
+  </div>
+
+  <!-- MODAL AVALIAÇÕES -->
+  <div id="reviewsModal" class="modal">
+    <div class="mbox-reviews">
+      <div class="rev-head">
+        <div class="rev-head-left">
+          <div class="rev-head-icon" style="font-size:18px;letter-spacing:-1px;color:#fff;font-family:'Bebas Neue',cursive;font-weight:900;">★★★★★</div>
+          <div class="rev-head-text">
+            <h2>Avaliações dos Clientes</h2>
+            <span>Depoimentos reais — verificados no Discord</span>
+          </div>
+        </div>
+        <div class="rev-counter">
+          <div class="rev-stat">
+            <div class="rev-stat-num">26+</div>
+            <div class="rev-stat-lbl">clientes</div>
+          </div>
+          <div class="rev-stars-total">★★★★★</div>
+        </div>
+      </div>
+
+      <div class="rev-carousel-wrap">
+        <div class="rev-track row1" id="row1"></div>
+      </div>
+      <div class="rev-carousel-wrap">
+        <div class="rev-track row2" id="row2"></div>
+      </div>
+
+      <button class="rev-close-btn" onclick="closeM()">✕ Fechar Avaliações</button>
+    </div>
+  </div>
+
+  <footer>&copy; 2026 Winstreak Modz · todos os direitos reservados</footer>
+
+  <script>
+    // ===== CANVAS =====
+    const canvas = document.getElementById('bgCanvas');
+    canvas.style.willChange = 'transform';
+    const ctx = canvas.getContext('2d', { alpha: false });
+    let width, height, particles = [], bgGrad = null;
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < 180; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 0.0018 + 0.0004;
+        const brightness = Math.floor(Math.random() * 180 + 60);
+        particles.push({
+          x: Math.random(), y: Math.random(),
+          radius: Math.random() * 2.5 + 0.5,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          alpha: Math.random() * 0.35 + 0.05,
+          r: brightness, g: brightness, b: brightness,
+        });
+      }
+    }
+
+    function resizeCanvas() {
+      width = canvas.width = innerWidth;
+      height = canvas.height = innerHeight;
+      bgGrad = ctx.createLinearGradient(0,0,0,height);
+      bgGrad.addColorStop(0,'#000000');
+      bgGrad.addColorStop(0.5,'#040404');
+      bgGrad.addColorStop(1,'#080808');
+    }
+
+    initParticles();
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    let lastT = 0;
+    function drawBackground(t) {
+      const dt = Math.min((t - lastT) / 16.67, 3);
+      lastT = t;
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, width, height);
+      ctx.save();
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx * dt; p.y += p.vy * dt;
+        if(p.x<0)p.x=1; if(p.x>1)p.x=0;
+        if(p.y<0)p.y=1; if(p.y>1)p.y=0;
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = `rgb(${p.r},${p.g},${p.b})`;
+        ctx.beginPath();
+        ctx.arc(p.x*width, p.y*height, p.radius, 0, 6.2832);
+        ctx.fill();
+      }
+      ctx.restore();
+      requestAnimationFrame(drawBackground);
+    }
+    requestAnimationFrame(drawBackground);
+
+    // ===== GLITCH =====
+    const t1El = document.querySelector('.t1');
+    const glitchChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&';
+    const originalText = 'Winstreak';
+    let glitchActive = false;
+    const heroH1 = document.getElementById('heroH1');
+
+    function triggerGlitch() {
+      if (glitchActive) return;
+      glitchActive = true;
+      heroH1 && heroH1.classList.add('glitching');
+      let iter = 0;
+      const maxIter = 14;
+      const interval = setInterval(() => {
+        t1El.textContent = originalText.split('').map((ch, i) => {
+          if (i < iter) return originalText[i];
+          return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+        }).join('');
+        iter++;
+        if (iter > maxIter) {
+          clearInterval(interval);
+          t1El.textContent = originalText;
+          heroH1 && heroH1.classList.remove('glitching');
+          glitchActive = false;
+        }
+      }, 40);
+    }
+    setInterval(triggerGlitch, 4000);
+    setTimeout(triggerGlitch, 1200);
+
+    // ===== PLANOS ACCORDION =====
+    function jumpTo(id) {
+      const el = document.querySelector(`.plan[data-id="${id}"]`);
+      if(el){ el.scrollIntoView({behavior:'smooth'}); setTimeout(()=>el.classList.add('open'),500); }
+    }
+    document.querySelectorAll('.plan').forEach(p => {
+      p.addEventListener('click', function(e){ if(e.target.classList.contains('buy-btn'))return; this.classList.toggle('open'); });
+    });
+
+    // ===== MODAIS =====
+    const termsModal   = document.getElementById('termsModal');
+    const contactModal = document.getElementById('contactModal');
+    const reviewsModal = document.getElementById('reviewsModal');
+
+    function openTerms()   { termsModal.classList.add('open'); }
+    function openContact() { contactModal.classList.add('open'); }
+    function openReviews() { reviewsModal.classList.add('open'); }
+    function closeM() {
+      [termsModal, contactModal, reviewsModal].forEach(m => m.classList.remove('open'));
+    }
+
+    window.openC  = openContact;
+    window.closeM = closeM;
+
+    document.getElementById('openTerms').addEventListener('click', openTerms);
+    document.getElementById('openContact').addEventListener('click', openContact);
+    document.getElementById('openReviews').addEventListener('click', openReviews);
+
+    [termsModal, contactModal, reviewsModal].forEach(m => {
+      m.addEventListener('click', e => { if(e.target === m) closeM(); });
+    });
+
+    // ===== AVALIAÇÕES =====
+    function discordAvatar(userId) {
+      return `https://dcdn.dstn.to/avatars/${userId}?size=128`;
+    }
+    function discordAvatarFallback(img, userId) {
+      try {
+        const idx = Number(BigInt(userId) >> 22n) % 6;
+        img.src = `https://cdn.discordapp.com/embed/avatars/${idx}.png`;
+      } catch(e) {
+        img.src = `https://cdn.discordapp.com/embed/avatars/0.png`;
+      }
+      img.onerror = null;
+    }
+
+    const reviews = [
+      { id:'857327532974014534', name:'leginn1',         msg:'Super confiável, tudo certinho, trajes, dinheiro e level, comprarei mais vezes!', plan:'Basic',    proof:'https://cdn.discordapp.com/attachments/1426915613749809172/1461154193929932830/image.png' },
+      { id:'832063725980090368', name:'VICTORATO',       msg:'Eu adquiri o plano Basic, gostei bastante do atendimento do Awper hand, e ele upou muito rápido gostei demais nota 10', plan:'Basic' },
+      { id:'1272000711550304359',name:'Shana Berta',     msg:'Super confiável, upagem muito rápida e veio tudo certinho.', plan:'Basic',        proof:'https://cdn.discordapp.com/attachments/1426915613749809172/1461877934963822602/gta.PNG' },
+      { id:'1235667015520485468',name:'naztra',          msg:'upagem 100% filé e muito confiável, tmj 🙏',                 plan:'',            proof:'https://cdn.discordapp.com/attachments/1426915613749809172/1462272356067315733/image.png' },
+      { id:'752600935766949981', name:'guxxtta',         msg:'serviço muito top rapazeada, super confiável e atencioso',   plan:'',            proof:'https://cdn.discordapp.com/attachments/1426915613749809172/1462581147992195174/rn_image_picker_lib_temp_ecf9f2a0-7e18-4bd4-b3fa-29267c87221d.jpg' },
+      { id:'673995648063897654', name:'Usuário Discord', msg:'Parabens vc sao mto fera no que fazer estou mto satisfeito pelo up da conta obg', plan:'' },
+      { id:'723569826999828530', name:'gato agiota',     msg:'Mano Marreta muito honesto, e realmente cai na conta e o trampo dele é limpo, podem confiar!!', plan:'', proof:'https://cdn.discordapp.com/attachments/1426915613749809172/1463251293022720010/image.png' },
+      { id:'719284775575224350', name:'PINEDO',          msg:'Super bem atendido, me explicaram tudo, muito confiáveis, primeira compra de muitas ainda, recomendo a todo mundo 👍', plan:'' },
+      { id:'1459208419926867994',name:'solavi',          msg:'100% confiavel, marreta é gente fina, atendimento otimo, recomendo p geralll', plan:'', proof:'https://cdn.discordapp.com/attachments/1426915613749809172/1463699896442949798/271590_18.jpg' },
+      { id:'1464013216295419937',name:'kenjiiqueda',     msg:'Me deixou alto demais kkkkkk Brabo demais Super recomendo, pode dar ate as senhas pra ele executar o mistério acontecer e ficar rico kkkkk', plan:'' },
+      { id:'1126620374201798687',name:'Gusta coco 77',   msg:'atendimento bom fez rapidinho',  plan:'' },
+      { id:'853030764521586771', name:'caverinha',       msg:'ÓTIMO ATENDIMENTO, MARRETA FAZ AS COISAS NA HORA', plan:'' },
+      { id:'1173397948332265523',name:'Vilão',           msg:'ÓTIMO ATENDIMENTO, MARRETA FAZ AS COISAS NA HORA', plan:'' },
+      { id:'602510116574461952', name:'PeuhX015 🐊',     msg:'Top dms slk',                    plan:'' },
+      { id:'324333049246384129', name:'Jr - Bolonha',    msg:'Recomendo muito, de confiança, podem aderir com segurança!', plan:'' },
+      { id:'951541367077765130', name:'Dan Winchester',  msg:'Recomendo o cara é de confiança, brabo demais. pode adquirir sem medo', plan:'' },
+      { id:'343413251524001792', name:'Cats',            msg:'tudo certo, ótimo atendimento e confiavel.', plan:'Premium' },
+      { id:'449004318973231104', name:'Olhapr4tras',     msg:'O cara é dez peguei 15m por missão e veio um chorinho ainda tmj', plan:'' },
+      { id:'940029083788644404', name:'lucas',           msg:'O cara é top de mais, rápidinho já colocou 100 milhões na conta top top, recomendo', plan:'', proof:'https://cdn.discordapp.com/attachments/1426915613749809172/1466883881130135750/IMG-20260130-WA0134.jpg' },
+      { id:'465698131271483404', name:'Usuário Discord', msg:'100% confiável, segundo serviço que faço com ele, podem adquirir sem medo✅', plan:'', proof:'https://cdn.discordapp.com/attachments/1426915613749809172/1468397515379577027/IMG_3480.jpg' },
+      { id:'719284775575224350', name:'PINEDO',          msg:'Muito bom, terceira compra e recomendo a todos.', plan:'' },
+      { id:'324333049246384129', name:'Jr - Bolonha',    msg:'Segunda compra realizada, tudo nos conformes! 😄', plan:'' },
+      { id:'795775392975814676', name:'RalucaçoGranolaçoFake⭐', msg:'Muito foda, comprei o pacote básico e já melhorou minha vida, sinceramente o vendedor merece um prêmio Nobel por tamanha inteligência e disposição!', plan:'Basic' },
+      { id:'1422379813762502718',name:'Lorran',          msg:'100% , mlk é brabo!!', plan:'' },
+      { id:'545952202020225025', name:'Ivoleno_3Dmodeler',msg:'o melhor das notas, 100% confiavel', plan:'' },
+      { id:'1169748040379285686',name:'ZUBATINHO',       msg:'Recomendo 100% confiável muito obrigadooooo 🤍', plan:'' },
+    ];
+
+    function buildCard(r) {
+      const div = document.createElement('div');
+      div.className = 'rev-card';
+      const avatarSrc = discordAvatar(r.id);
+      div.innerHTML = `
+        <span class="rev-card-badge">✓ verificado</span>
+        <div class="rev-card-top">
+          <img class="rev-avatar" src="${avatarSrc}" alt="${r.name}" onerror="discordAvatarFallback(this,'${r.id}')">
+          <div class="rev-user">
+            <div class="rev-name">${r.name}</div>
+            <div class="rev-stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="rev-divider"></div>
+        <div class="rev-msg">${r.msg}</div>
+        ${r.proof ? `<img class="rev-proof" src="${r.proof}" alt="Prova" loading="lazy" onerror="this.style.display='none'">` : ''}
+        ${r.plan ? `<div class="rev-foot"><span class="rev-plan-tag">Plano ${r.plan}</span></div>` : ''}
+      `;
+      return div;
+    }
+
+    const half = Math.ceil(reviews.length / 2);
+    const row1Data = reviews.slice(0, half);
+    const row2Data = reviews.slice(half);
+
+    function fillTrack(trackEl, data) {
+      [...data, ...data].forEach(r => trackEl.appendChild(buildCard(r)));
+    }
+
+    fillTrack(document.getElementById('row1'), row1Data);
+    fillTrack(document.getElementById('row2'), row2Data);
+  </script>
+</body>
+</html>
